@@ -30,12 +30,16 @@ public class HomepageSteps {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new"); // Ny headless mode
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--disable-gpu");
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--user-data-dir=/tmp/chrome-" + System.currentTimeMillis()); // unikt per körning
+
+        // Om vi kör i GitHub Actions (headless CI)
+        if (System.getenv("GITHUB_ACTIONS") != null) {
+            options.addArguments("--headless=new");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--disable-gpu");
+            options.addArguments("--remote-allow-origins=*");
+            options.addArguments("--user-data-dir=/tmp/chrome-" + System.currentTimeMillis());
+        }
 
         driver = new ChromeDriver(options);
     }
