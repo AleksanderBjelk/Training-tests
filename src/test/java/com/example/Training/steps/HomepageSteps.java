@@ -31,7 +31,7 @@ public class HomepageSteps {
 
         ChromeOptions options = new ChromeOptions();
 
-        // Om vi kör i GitHub Actions (headless CI)
+        // Detta körs i GitHub Actions
         if (System.getenv("GITHUB_ACTIONS") != null) {
             options.addArguments("--headless=new");
             options.addArguments("--no-sandbox");
