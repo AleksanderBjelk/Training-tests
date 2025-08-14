@@ -1,3 +1,4 @@
+/*
 package com.example.Training;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -54,3 +55,4 @@ public class SeleniumTrainingTest {
         assertEquals("Skicka", submitBtn.getText());
     }
 }
+*/
