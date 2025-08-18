@@ -1,16 +1,14 @@
 package com.example.Training.steps;
 
+import com.example.Training.driver.DriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,20 +25,13 @@ public class HomepageSteps {
 
     @Before
     public void setUp(){
-        WebDriverManager.chromedriver().setup();
-
-        ChromeOptions options = new ChromeOptions();
-
-        driver = new ChromeDriver(options);
+        driver = DriverManager.getDriver();
     }
 
     @After
     public void tearDown() throws InterruptedException {
-       // if (driver != null) driver.quit();
-        if (driver != null) {
-            Thread.sleep(5000);
-            driver.quit();
-        }
+        Thread.sleep(1000);
+        DriverManager.quitDriver();
     }
 
     @Given("jag öppnar startsidan")
@@ -154,3 +145,15 @@ public class HomepageSteps {
 
     }
 }
+
+
+
+
+ /*       if (System.getenv("GITHUB_ACTIONS") != null) {
+            options.addArguments("--headless=new");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--disable-gpu");
+            options.addArguments("--remote-allow-origins=*");
+            options.addArguments("--user-data-dir=/tmp/chrome-" + System.currentTimeMillis());
+        }*/
