@@ -10,6 +10,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import static org.junit.Assert.assertTrue;
 
@@ -73,6 +74,52 @@ public class IkanoSteps {
     @When("jag trycker på rätt länk {string}")
     public void jagTryckerPåRättLänk(String xpath) {
         WebElement link = driver.findElement(By.xpath(xpath));
+        link.click();
+    }
+
+    @And("jag ser rubriken om Ikea lån {string}")
+    public void jagSerRubrikenOmIkeaLån(String xpath) {
+        WebElement text = driver.findElement(By.xpath(xpath));
+        assertTrue(text.isDisplayed());
+    }
+
+    @And("jag ska se en lista med frågor {string}")
+    public void jagSkaSeEnListaMedFrågor(String cssSelector) {
+        WebElement list = driver.findElement(By.cssSelector(cssSelector));
+        assertTrue(list.isDisplayed());
+    }
+
+    @And("jag ska se näst fråga i listan {string}")
+    public void jagSkaSeNästFrågaIListan(String xpath) {
+        WebElement listQuestion = driver.findElement(By.xpath(xpath));
+        assertTrue(listQuestion.isDisplayed());
+    }
+
+
+    @When("jag klickar på frågan ska jag det dyka upp mer text {string}")
+    public void jagKlickarPåFråganSkaJagDetDykaUppMerText(String xpath) throws InterruptedException {
+        WebElement clickQuestion = driver.findElement(By.xpath(xpath));
+        clickQuestion.click();
+        Thread.sleep(500);
+    }
+
+
+    @Then("ska jag se den nya texten {string}")
+    public void skaJagSeDenNyaTexten(String xpath) {
+        WebElement newText = driver.findElement(By.xpath(xpath));
+        assertTrue(newText.isDisplayed());
+    }
+
+    @And("jag ska hitta länken till nästa sida {string}")
+    public void jagSkaHittaLänkenTillNästaSida(String cssSelector) {
+        WebElement link = driver.findElement(By.cssSelector(cssSelector));
+        new Actions(driver).moveToElement(link).perform();
+        link.isDisplayed();
+    }
+
+    @When("jag klickar på länken läs mer om bolån ska jag komma till en ny sida {string}")
+    public void jagKlickarPåLänkenLäsMerOmBolånSkaJagKommaTillEnNySida(String cssSelector) {
+        WebElement link = driver.findElement(By.cssSelector(cssSelector));
         link.click();
     }
 

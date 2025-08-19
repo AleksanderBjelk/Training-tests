@@ -12,4 +12,12 @@ Feature: Ikano Bank startsida
     And ska jag se underrubriken på rubriken ".hero-subheading"
     And jag ska se text om privatlån "//p[strong[contains(text(), 'Information om effektiv ränta för privatlån:')]]"
     When jag trycker på rätt länk "//strong[contains(text(),'Bolån')]"
+    Then ska jag se rubriken på Ikano ".hero-heading"
+    And jag ser rubriken om Ikea lån "//h2[contains(text(), 'Bättre bolån som IKEA Family medlem')]"
+    And jag ska se en lista med frågor ".ikano-accordion"
+    And jag ska se näst fråga i listan "/html/body/section[2]/section[12]/div[1]/article[1]/ul/li[5]/span"
+    When jag klickar på frågan ska jag det dyka upp mer text "/html/body/section[2]/section[12]/div[1]/article[1]/ul/li[5]/span"
+    Then ska jag se den nya texten "/html/body/section[2]/section[12]/div[1]/article[1]/ul/li[5]/article"
+    And jag ska hitta länken till nästa sida "a.rt-ikano-link[href='/bolan/ikea-family']"
+    When jag klickar på länken läs mer om bolån ska jag komma till en ny sida "a.rt-ikano-link[href='/bolan/ikea-family']"
 

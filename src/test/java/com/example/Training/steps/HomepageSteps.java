@@ -43,7 +43,7 @@ public class HomepageSteps {
     public void ska_jag_se_rubriken(String expectedHeading) throws InterruptedException {
         WebElement heading = driver.findElement(By.id("main-heading"));
         assertEquals(expectedHeading, heading.getText());
-        Thread.sleep(500);
+        //Thread.sleep(500);
 
     }
 
@@ -51,7 +51,7 @@ public class HomepageSteps {
     public void ska_jag_se_listobjekten(String item) throws InterruptedException {
         WebElement listItem = driver.findElement(By.xpath("//ul[@class='items']/li[text()='" + item + "']"));
         assertEquals(item, listItem.getText());
-        Thread.sleep(500);
+        //Thread.sleep(500);
 
     }
 
@@ -59,7 +59,7 @@ public class HomepageSteps {
     public void jag_valjer_frukten(String fruit) throws InterruptedException {
         Select dropdown = new Select(driver.findElement(By.cssSelector("#fruit-select")));
         dropdown.selectByVisibleText(fruit);
-        Thread.sleep(500);
+        //Thread.sleep(500);
 
     }
 
@@ -87,7 +87,7 @@ public class HomepageSteps {
         assertEquals(name, actualName);
         assertEquals(age, actualAge);
         assertEquals(city, actualCity);
-        Thread.sleep(500);
+        //Thread.sleep(500);
 
     }
 
@@ -95,7 +95,7 @@ public class HomepageSteps {
     public void jag_klickar_pa_knappen(String buttonText) throws InterruptedException {
         WebElement button = driver. findElement(By.xpath("//button[text()='" + buttonText + "']"));
         button.click();
-        Thread.sleep(500);
+        //Thread.sleep(500);
 
     }
 
@@ -122,7 +122,7 @@ public class HomepageSteps {
         WebElement input = driver.findElement(By.id(id));
         input.clear();
         input.sendKeys(text);
-        Thread.sleep(500);
+        //Thread.sleep(500);
     }
 
     @When("jag klickar på knappen för att logga in {string}")
@@ -141,7 +141,7 @@ public class HomepageSteps {
             case "gul": id = "color-yellow"; break;
         }
         driver.findElement(By.id(id)).click();
-        Thread.sleep(500);
+        //Thread.sleep(500);
 
     }
 }
