@@ -13,6 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class IkanoSteps {
@@ -60,7 +61,7 @@ public class IkanoSteps {
         cookie.click();
     }
 
-    @When("jag trycker på knappen räkna på privatlån {string}")
+    @And("jag trycker på knappen räkna på privatlån {string}")
     public void jagTryckerPåKnappenRäknaPåPrivatlån(String cssSelector) {
         WebElement link = driver.findElement(By.cssSelector(cssSelector));
         link.click();
@@ -137,7 +138,6 @@ public class IkanoSteps {
         button.click();
     }
 
-
     @And("jag klickar på fältet för att sätta ett ogiltigt värde {string}")
     public void jagKlickarPåFältetFörAttSättaEttOgiltigtVärde(String cssSelector) throws InterruptedException {
         WebElement housingInput = driver.findElement(By.cssSelector(cssSelector));
@@ -145,5 +145,38 @@ public class IkanoSteps {
         housingInput.sendKeys(Keys.DELETE);
         housingInput.sendKeys("99000");
         Thread.sleep(2000);
+    }
+
+    @And("jag klickar på fältet för insats {string}")
+    public void jagKlickarPåFältetFörInsats(String cssSelector) {
+        WebElement paymentInput = driver.findElement(By.cssSelector(cssSelector));
+        paymentInput.click();
+    }
+
+
+    @Then("borde jag se att husets värde är satt till lägsta värde {string}")
+    public void bordeJagSeAttHusetsVärdeÄrSattTillLägstaVärde(String cssSelector) {
+        WebElement valueField = driver.findElement(By.cssSelector(cssSelector));
+        String actualValue = valueField.getDomAttribute("value");
+        actualValue = actualValue.replace("\u00A0", " ");
+        assertEquals("100 000", actualValue);
+    }
+
+
+    @When("jag klickar på fältet för att sätta in en felaktig insats {string}")
+    public void jagKlickarPåFältetFörAttSättaInEnFelaktigInsats(String cssSelector) throws InterruptedException {
+        WebElement paymentInput = driver.findElement(By.cssSelector(cssSelector));
+        paymentInput.sendKeys(Keys.chord(Keys.COMMAND, "a")); //FÖR MACOS
+        paymentInput.sendKeys(Keys.DELETE);
+        paymentInput.sendKeys("14999");
+        Thread.sleep(2000);
+    }
+
+    @Then("borde jag se att insatsen har nått sitt lägsta värde {string}")
+    public void bordeJagSeAttInsatsenHarNåttSittLägstaVärde(String cssSelector) {
+        WebElement valueField = driver.findElement(By.cssSelector(cssSelector));
+        String actualValue = valueField.getDomAttribute("value");
+        actualValue = actualValue.replace("\u00A0", " ");
+        assertEquals("15 001", actualValue);
     }
 }
