@@ -20,4 +20,8 @@ Feature: Ikano Bank startsida
     Then ska jag se den nya texten "/html/body/section[2]/section[12]/div[1]/article[1]/ul/li[5]/article"
     And jag ska hitta länken till nästa sida "a.rt-ikano-link[href='/bolan/ikea-family']"
     When jag klickar på länken läs mer om bolån ska jag komma till en ny sida "a.rt-ikano-link[href='/bolan/ikea-family']"
+    Then ska jag se rubriken på Ikano ".hero-heading"
+    When jag klickar på länken ska jag förflyttas ner på sidan "a.rt-ikano-button-accent[href='/#raknare']"
+    And jag klickar på knappen köpa ny bostad ("(//span[contains(@class,'monthly-cost-jmih20') and contains(@class,'e1a08yaa1')])[2]"))
+    And jag klickar på fältet för att sätta ett ogiltigt värde "#housing-value"
 

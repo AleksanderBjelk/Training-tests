@@ -8,6 +8,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -123,4 +124,26 @@ public class IkanoSteps {
         link.click();
     }
 
+    @When("jag klickar på länken ska jag förflyttas ner på sidan {string}")
+    public void jagKlickarPåLänkenSkaJagFörflyttasNerPåSidan(String cssSelector) throws InterruptedException {
+        WebElement link = driver.findElement(By.cssSelector(cssSelector));
+        link.click();
+        Thread.sleep(3000);
+    }
+
+    @And("jag klickar på knappen köpa ny bostad \\({string}))")
+    public void jagKlickarPåKnappenKöpaNyBostad(String xpath) {
+        WebElement button = driver.findElement(By.xpath(xpath));
+        button.click();
+    }
+
+
+    @And("jag klickar på fältet för att sätta ett ogiltigt värde {string}")
+    public void jagKlickarPåFältetFörAttSättaEttOgiltigtVärde(String cssSelector) throws InterruptedException {
+        WebElement housingInput = driver.findElement(By.cssSelector(cssSelector));
+        housingInput.sendKeys(Keys.chord(Keys.COMMAND, "a")); //FÖR MACOS
+        housingInput.sendKeys(Keys.DELETE);
+        housingInput.sendKeys("99000");
+        Thread.sleep(2000);
+    }
 }
