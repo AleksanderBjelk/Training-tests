@@ -179,4 +179,26 @@ public class IkanoSteps {
         actualValue = actualValue.replace("\u00A0", " ");
         assertEquals("15 001", actualValue);
     }
+
+    @And("jag borde se att min månadsränta {string} är {string}")
+    public void jagBordeSeAttMinMånadsräntaÄr(String cssSelector, String expected) {
+        String actual = driver.findElement(By.cssSelector(cssSelector)).getText();
+        actual = actual.replace("\u00A0", " ").trim();
+        assertEquals("Ränta stämmer inte", expected, actual);
+    }
+
+    @And("jag borde se min månadskostnad {string} är {string}")
+    public void jagBordeSeMinMånadskostnadÄr(String cssSelector, String expected) {
+        String actual = driver.findElement(By.cssSelector(cssSelector)).getText();
+        actual = actual.replace("\u00A0", " ").trim();
+        assertEquals("Månadskostnad stämmer inte", expected, actual);
+
+    }
+
+    @And("jag borde se min effiktiva ränta {string} är {string}")
+    public void jagBordeSeMinEffiktivaRäntaÄr(String cssSelector, String expected) {
+        String actual = driver.findElement(By.cssSelector(cssSelector)).getText();
+        actual = actual.replace("\u00A0", " ").trim();
+        assertEquals("Effiktiva ränta stämmer inte", expected, actual);
+    }
 }
