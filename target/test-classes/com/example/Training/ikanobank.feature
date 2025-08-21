@@ -29,5 +29,18 @@ Feature: Ikano Bank startsida
     When jag klickar på fältet för att sätta in en felaktig insats "#down-payment"
     And jag klickar på knappen köpa ny bostad ("(//span[contains(@class,'monthly-cost-jmih20') and contains(@class,'e1a08yaa1')])[2]"))
     Then borde jag se att insatsen har nått sitt lägsta värde "#down-payment"
+    And jag borde se att min månadsränta "dd[data-testid='nominal-interest-rate']" är "3,26 %"
+    And jag borde se min månadskostnad "dd[data-testid='nominal-interest-expense']" är "231 kr/mån"
+    And jag borde se min effiktiva ränta "dd[data-testid='effective-interest-rate']" är "3,31 %"
+    When jag klickar i Ikea family ".monthly-cost-9qzta1"
+    Then jag borde se att min månadsränta "dd[data-testid='nominal-interest-rate']" är "3,21 %"
+    And jag borde se min månadskostnad "dd[data-testid='nominal-interest-expense']" är "227 kr/mån"
+    And jag borde se min effiktiva ränta "dd[data-testid='effective-interest-rate']" är "3,26 %"
+    And jag borde se medlemsrabatt text "//dt[contains(text(),'Medlemsrabatt')]"
+    And jag borde se hur mycket i procent jag sparar "dd[data-testid='membership-discount-rate']" är "0,05 %"
+    And jag borde se hur mycket i kronor jag sparar "dd[data-testid='membership-discount-expense']" är "4 kr/mån"
+    And jag borde se att min månadsränta "dd[data-testid='nominal-interest-rate']" är "3,21 %"
+    And jag borde se min månadskostnad "dd[data-testid='nominal-interest-expense']" är "227 kr/mån"
+    And jag borde se min effiktiva ränta "dd[data-testid='effective-interest-rate']" är "3,26 %"
 
 

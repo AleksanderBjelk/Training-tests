@@ -201,4 +201,31 @@ public class IkanoSteps {
         actual = actual.replace("\u00A0", " ").trim();
         assertEquals("Effiktiva ränta stämmer inte", expected, actual);
     }
+
+    @When("jag klickar i Ikea family {string}")
+    public void jagKlickarIIkeaFamily(String cssSelector) throws InterruptedException {
+        WebElement ikeaBox = driver.findElement(By.cssSelector(cssSelector));
+        ikeaBox.click();
+        Thread.sleep(1000);
+    }
+
+    @And("jag borde se medlemsrabatt text {string}")
+    public void jagBordeSeMedlemsrabattText(String xpath) {
+        WebElement rabattText = driver.findElement(By.xpath(xpath));
+        rabattText.isDisplayed();
+    }
+
+    @And("jag borde se hur mycket i procent jag sparar {string} är {string}")
+    public void jagBordeSeHurMycketIProcentJagSpararÄr(String cssSelector, String expected) {
+        String actual = driver.findElement(By.cssSelector(cssSelector)).getText();
+        actual = actual.replace("\u00A0", " ").trim();
+        assertEquals("Medlemsrabatt stämmer ej", expected, actual);
+    }
+
+    @And("jag borde se hur mycket i kronor jag sparar {string} är {string}")
+    public void jagBordeSeHurMycketIKronorJagSpararÄr(String cssSelector, String expected) {
+        String actual = driver.findElement(By.cssSelector(cssSelector)).getText();
+        actual = actual.replace("\u00A0", " ").trim();
+        assertEquals("Medlemsrabatt stämmer ej", expected, actual);
+    }
 }
